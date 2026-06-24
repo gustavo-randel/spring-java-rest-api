@@ -16,9 +16,10 @@ public class HelloWorldController {
         return "Hello, World GET!";
     }
     // end point de localhost:6769/v1/hello?name={caracteres} vai resultar em Hello, {caracteres} na requisição, ta recebendo um query param
+    // falta do param = erro 400 (erro do usuario)
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public String getParam(@RequestParam(value= "name", required = false) String name) {
+    public String getParam(@RequestParam(value= "name", required = true) String name) {
         return "Hello, World" + name;
     }
 
@@ -29,10 +30,11 @@ public class HelloWorldController {
         return "Hello, " + idd;
     }
 
+    // auto explicativo, vai requerir do body o parametro
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String post() {
-        return "Hello, World POST!";
+    public String post(@RequestBody String name) {
+        return "Hello, World " + name;
     }
 //    @GetMapping
 //    public ResponseEntity<String> helloWorld() {
