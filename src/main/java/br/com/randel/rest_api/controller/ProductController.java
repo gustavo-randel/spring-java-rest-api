@@ -20,9 +20,11 @@ public class ProductController {
     // melhor maneira é injetar a dependencia
     //@Autowired
     // para a injeção de dependencia ser possivel, a classe tem q ser um bin gerenciado pelo Spring, no caso como é um service, vai sem problemas
-    // anotacao lombok tira a necessidade de fazer o construtor 
+    // anotacao lombok tira a necessidade de fazer o construtor
     private final ProductService productService;
 
+    // retorna json por padrão, mas caso necessario pode ser definido outro tipo de retorno ao lado do getmapping com
+    // produces = e o tipo de retorno
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ProductEntity> findALl() {
