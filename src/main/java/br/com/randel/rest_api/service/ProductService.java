@@ -11,7 +11,7 @@ import java.util.List;
 // simulando DB para testes no controller
 @Service
 public class ProductService {
-    private static final List<ProductEntity> PRODUTOS = new ArrayList<>()
+    private static final List<ProductEntity> PRODUTOS = new ArrayList<>();
 
     static {
         PRODUTOS.add(ProductEntity.builder()

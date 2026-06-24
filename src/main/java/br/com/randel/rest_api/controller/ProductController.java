@@ -1,14 +1,12 @@
 package br.com.randel.rest_api.controller;
 
 import br.com.randel.rest_api.database.model.ProductEntity;
+import br.com.randel.rest_api.dto.ProductDto;
 import br.com.randel.rest_api.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +27,11 @@ public class ProductController {
     @ResponseStatus(HttpStatus.OK)
     public List<ProductEntity> findALl() {
         return productService.findall();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public ProductEntity createProduct(@RequestBody ProductDto productDto) {
+        return productService.createProduct(productDto);
     }
 }
