@@ -9,7 +9,7 @@ import java.util.List;
 
 // simulando DB para testes no controller
 @Service
-public class ProdutoService {
+public class ProductService {
     private static final List<ProductEntity> PRODUTOS = List.of(
             ProductEntity.builder()
                     .id(1)
