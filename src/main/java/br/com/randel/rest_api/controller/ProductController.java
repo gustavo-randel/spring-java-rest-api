@@ -37,7 +37,8 @@ public class ProductController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductEntity updateProduct(@PathVariable Integer id ,@RequestBody ProductDto productDto) {
+    public ProductEntity updateProduct(@PathVariable Integer id,
+                                       @RequestBody ProductDto productDto) {
         return productService.updateProduct(productDto, id);
     }
 
