@@ -2,6 +2,7 @@ package br.com.randel.rest_api.controller;
 
 import br.com.randel.rest_api.database.model.ProductEntity;
 import br.com.randel.rest_api.dto.ProductDto;
+import br.com.randel.rest_api.exception.NotFoundException;
 import br.com.randel.rest_api.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +39,14 @@ public class ProductController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public ProductEntity updateProduct(@PathVariable Integer id,
-                                       @RequestBody ProductDto productDto) {
+                                       @RequestBody ProductDto productDto) throws NotFoundException {
         return productService.updateProduct(productDto, id);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteProduct(@PathVariable Integer id) {
+        productService.deleteProduct(id);
     }
 
 }
