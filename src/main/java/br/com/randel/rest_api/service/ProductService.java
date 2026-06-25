@@ -2,6 +2,7 @@ package br.com.randel.rest_api.service;
 
 import br.com.randel.rest_api.database.model.ProductEntity;
 import br.com.randel.rest_api.dto.ProductDto;
+import br.com.randel.rest_api.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -58,11 +59,11 @@ public class ProductService {
         return newProduct;
     }
 
-    public ProductEntity updateProduct(ProductDto productDto, Integer id) {
+    public ProductEntity updateProduct(ProductDto productDto, Integer id) throws NotFoundException {
         ProductEntity product = PRODUTOS.stream()
                 .filter( p -> p.getId().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("product not found"));
+                .orElseThrow(() -> new NotFoundException("product not found"));
 
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
@@ -71,4 +72,7 @@ public class ProductService {
         return product;
     }
 
+    public void deleteProduct(Integer id) {
+        PRODUTOS.removeIf(p -> p.getId().equals(id));
+    }
 }
